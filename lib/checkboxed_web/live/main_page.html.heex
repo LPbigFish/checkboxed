@@ -1,0 +1,26 @@
+<div
+  id="checkboxes-container"
+  class="overflow-auto mr-2 ml-0.5"
+>
+  <div
+    id="checkboxes"
+    phx-update="stream"
+    class="grid grid-cols-100 gap-px border border-gray-200"
+    style="width: max-content;"
+  >
+    <div
+      :for={{id, checkbox} <- @streams.checkboxes}
+      id={"checkbox-#{id}"}
+      class="aspect-square flex items-center justify-center"
+    >
+      <.input
+        type="checkbox"
+        name={checkbox.id}
+        checked={checkbox.checked}
+        class="w-3 h-3"
+        phx-click="change_state"
+        phx-value-id={checkbox.id}
+      />
+    </div>
+  </div>
+</div>

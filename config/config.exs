@@ -7,10 +7,6 @@
 # General application configuration
 import Config
 
-config :checkboxed,
-  ecto_repos: [Checkboxed.Repo],
-  generators: [timestamp_type: :utc_datetime]
-
 # Configure the endpoint
 config :checkboxed, CheckboxedWeb.Endpoint,
   url: [host: "localhost"],

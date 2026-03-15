@@ -205,7 +205,7 @@ defmodule CheckboxedWeb.CoreComponents do
       end)
 
     ~H"""
-    <div class="fieldset mb-2">
+    <div class="">
       <label for={@id}>
         <input
           type="hidden"

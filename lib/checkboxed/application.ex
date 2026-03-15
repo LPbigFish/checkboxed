@@ -9,9 +9,10 @@ defmodule Checkboxed.Application do
   def start(_type, _args) do
     children = [
       CheckboxedWeb.Telemetry,
-      Checkboxed.Repo,
+      # Checkboxed.Repo,
       {DNSCluster, query: Application.get_env(:checkboxed, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Checkboxed.PubSub},
+      Checkboxed.StateAgent,
       # Start a worker by calling: Checkboxed.Worker.start_link(arg)
       # {Checkboxed.Worker, arg},
       # Start to serve requests, typically the last entry

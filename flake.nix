@@ -1,0 +1,43 @@
+{
+  description = "Description for the project";
+
+  inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  };
+
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+      ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      perSystem =
+        {
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+
+            packages =
+              (with pkgs.beamPackages; [
+                elixir
+                elixir-ls
+                erlang
+              ])
+              ++ (with pkgs; [
+                inotify-tools
+                watchman
+              ]);
+          };
+        };
+      flake = {
+      };
+    };
+}
